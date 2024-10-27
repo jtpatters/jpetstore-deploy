@@ -1,0 +1,53 @@
+# deployment.yaml
+
+application:
+  name: JPetStore
+  version: 2.3.0
+
+artifacts:
+  - name: jpetstore-web
+    version: 2.3.0
+    url: https://example.com/artifacts/jpetstore-web-2.3.0.jar
+  - name: jpetstore-service
+    version: 2.3.0
+    url: https://example.com/artifacts/jpetstore-service-2.3.0.jar
+  - name: jpetstore-database
+    version: 1.0.0
+    url: https://example.com/artifacts/jpetstore-database-1.0.0.sql
+
+environment:
+  name: production
+  url: https://jpetstore-prod.example.com
+  db_host: prod-db.example.com
+  db_port: 5432
+  db_name: jpetstore
+  jvm_options: "-Xms512m -Xmx2048m"
+
+services:
+  - name: user-service
+    url: https://user-service-prod.example.com
+  - name: order-service
+    url: https://order-service-prod.example.com
+
+notifications:
+  email: deploy-notify@example.com
+  slack: '#deployments'
+
+logging:
+  level: INFO
+  directory: /var/log/jpetstore
+
+health_checks:
+  - name: Web Service Health Check
+    url: https://jpetstore-prod.example.com/health
+    timeout: 10
+    retries: 3
+  - name: Database Health Check
+    type: sql
+    host: prod-db.example.com
+    port: 5432
+    user: jpetstore_user
+    password: securepassword
+    query: "SELECT 1"
+    timeout: 10
+    retries: 3
