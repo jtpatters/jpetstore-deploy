@@ -7,13 +7,13 @@ application:
 artifacts:
   - name: jpetstore-web
     version: 2.3.0
-    url: https://example.com/artifacts/jpetstore-web-2.3.0.jar
+    url: https://nexus.example.com/repository/jpetstore/jpetstore-web-2.3.0.jar
   - name: jpetstore-service
     version: 2.3.0
-    url: https://example.com/artifacts/jpetstore-service-2.3.0.jar
+    url: https://nexus.example.com/repository/jpetstore/jpetstore-service-2.3.0.jar
   - name: jpetstore-database
     version: 1.0.0
-    url: https://example.com/artifacts/jpetstore-database-1.0.0.sql
+    url: https://nexus.example.com/repository/jpetstore/jpetstore-database-1.0.0.sql
 
 environment:
   name: production
